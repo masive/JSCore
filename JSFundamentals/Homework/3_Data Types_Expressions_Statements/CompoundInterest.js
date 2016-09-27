@@ -1,15 +1,17 @@
 function compoundInterest (args) {
-  let sum = Number(args[0])
-  let inRate = (args[1] / 100) / 12
-  let compPeriod = Number(args[2])
-  let timespan = args[3] * 12
+  let p = Number(args[0])
+  let i = (args[1] / 100) / 12
+  let n = Number(args[2])
+  let t = args[3] * 12
+  let f = 0
 
-  for (let i = timespan; i > 0; i -= 3) {
-    sum += sum * (inRate * compPeriod)
+  for (let j = 1; j < n; j++) {
+    f += (f + p) * (1 + i)
   }
 
-  console.log(sum.toFixed(2))
+  console.log(f.toFixed(2))
 }
 
 compoundInterest(['1500', '4.3', '3', '6'])
 compoundInterest(['100000', '5', '12', '25'])
+

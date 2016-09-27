@@ -16,5 +16,5 @@ function rounding (args) {
   console.log(num)
 }
 
-rounding(['3.141872264546464615555', '2'])
+rounding(['3.14187226454646461', '2'])
 rounding(['10.59', '2'])

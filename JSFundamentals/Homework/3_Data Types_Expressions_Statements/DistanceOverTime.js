@@ -5,7 +5,7 @@ function distance (args) {
   let objOneDistance = (t / 60) / 60 * vOne
   let objTwoDistance = (t / 60) / 60 * vTwo
   let delta = Math.abs((objOneDistance - objTwoDistance) * 1000)
-  console.log(objOneDistance, objTwoDistance, delta)
+  console.log(delta)
 }
 
 distance(['0', '60', '3600'])

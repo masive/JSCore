@@ -11,6 +11,21 @@
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
     let pf = canvas.getContext("2d");
+    canvas.addEventListener('mousemove',function(evt) {
+        let mousePos = getMousePos(canvas, evt);
+        let message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+        writeMessage(canvas, message);
+    },false);
+    let position;
+
+    canvas.addEventListener('mousedown',function(evt) {
+        position = getMousePos(canvas, evt);
+        let message1 = 'Position' + position.x + ',' + position.y;
+        writeMessage1(canvas, message1);
+    },false);
+     // ...................................... fill board
+
+
 
 
     function cls() {
@@ -206,7 +221,51 @@
 
         pf.stroke();
     }
+    for(let i =0 ;i<18;i++){
+        let chipcolour;
+        if(i%2==0){
+            chipcolour ='blue'
+            pf.fillStyle(chipcolour)
+        }
+    }
     playField();
+    function writeMessage(canvas,message){
+        pf.clearRect(0,0,400,30);
+        pf.font ='18pt Calibri';
+        pf.fillStyle='black';
+        pf.fillText(message,10,25);
+    }
+    function writeMessage1(canvas,message){
+        pf.clearRect(400,0,800,30);
+        pf.font ='18pt Calibri';
+        pf.fillStyle='black';
+        pf.fillText(message,410,25);
+    }
+    function fillboard(position){
+
+        let arr = [[70,70],[70,500],[70,920],[500,920],[930,70],[930,500],
+        [930,920],[500,70],[220,220],[220,500],[220,780],[500,780],[780,780],
+        [780,500],[780,220],[500,220],[370,370],[370,500],[370,630],[500,630],
+        [630,630],[630,500],[630,370],[500,370]];
+        let ifPointOnPosition = false;
+        for(let point of arr){
+            if((position.x>=point[0]-30&&position.x<=point[0]+30)&&
+                    (position.y>=point[1]-30&&position.y<=point[1]+30)){
+                ifPointOnPosition=true;
+                pointposition = point;
+            }
+
+        }
+        return ifPointOnPosition;
+    }
+    function getMousePos(canvas,evt){
+        let rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top,
+        };
+    }
+
 
     function res() {
         ctx.fillStyle = 'white';
@@ -241,6 +300,7 @@
 
         ctx.restore();
     }
+
 </script>
 </body>
 </html>

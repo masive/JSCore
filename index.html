@@ -16,12 +16,15 @@
         let message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
         writeMessage(canvas, message);
     },false);
+    let pull =[];
     let position;
-
+    let count =0;
     canvas.addEventListener('mousedown',function(evt) {
         position = getMousePos(canvas, evt);
         let message1 = 'Position' + position.x + ',' + position.y;
         writeMessage1(canvas, message1);
+        fillboard(position);
+        playField();
     },false);
      // ...................................... fill board
 
@@ -218,16 +221,24 @@
         pf.lineTo(500, 660);
 
 
-
         pf.stroke();
-    }
-    for(let i =0 ;i<18;i++){
-        let chipcolour;
-        if(i%2==0){
-            chipcolour ='blue'
-            pf.fillStyle(chipcolour)
+
+
+        let colour='';
+        //pf.fillStyle=colour;
+        if(count%2==0) {
+            pf.fillStyle = 'red';
+        } else{
+            pf.fillStyle='blue';
+        }
+        for(let p of pull){
+            pf.beginPath();
+            pf.arc(p[0],p[1],30,0,Math.PI*2);
+            pf.fill();
         }
     }
+    let pointPosition;
+
     playField();
     function writeMessage(canvas,message){
         pf.clearRect(0,0,400,30);
@@ -241,8 +252,8 @@
         pf.fillStyle='black';
         pf.fillText(message,410,25);
     }
-    function fillboard(position){
 
+    function fillboard(position){
         let arr = [[70,70],[70,500],[70,920],[500,920],[930,70],[930,500],
         [930,920],[500,70],[220,220],[220,500],[220,780],[500,780],[780,780],
         [780,500],[780,220],[500,220],[370,370],[370,500],[370,630],[500,630],
@@ -252,7 +263,9 @@
             if((position.x>=point[0]-30&&position.x<=point[0]+30)&&
                     (position.y>=point[1]-30&&position.y<=point[1]+30)){
                 ifPointOnPosition=true;
-                pointposition = point;
+                pull.push(point);
+                count++;
+                console.log('true')
             }
 
         }

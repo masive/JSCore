@@ -37,7 +37,6 @@ function playField() {
     pf.beginPath();
 //_____________________________________________________out square
 //left side___________
-
     pf.arc(70, 70, 30, 0, Math.PI * 2, true);//out left-up circle
     pf.moveTo(70, 100);
     pf.lineTo(70, 470);//let upper line
@@ -175,8 +174,6 @@ function playField() {
         pf.arc(p.x, p.y, 30, 0, Math.PI * 2);
         pf.fill();
     }
-
-
 }
 let pointPosition;
 
@@ -282,5 +279,4 @@ function grid() {
         if (col % 5 == 0) ctx.lineWidth = 0.25;
     }
     ctx.restore();
-
 }

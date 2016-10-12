@@ -248,7 +248,10 @@ function fillboard(position) {
                 console.log(newPosition[2]);
                 //colour1.push(i.colour);
                 //delete i.colour;
-                i.colour = 'yellow';
+                //i.colour = 'yellow';
+                delete i.x;
+                delete i.y;
+                delete i.colour;
                 //pull.push({x: newPosition[0], y: newPosition[1], colour: 'yellow'});
                 count++;
                 colourReduser=true;
@@ -273,6 +276,9 @@ function fillboard(position) {
         if (isYellow){
             pull.push({x: newPosition[0], y: newPosition[1], colour: newPosition[2]});
             colourReduser = false;
+        }
+        else{
+            return;
         }
     }
     return ifPointOnPosition;

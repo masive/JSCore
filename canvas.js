@@ -277,9 +277,7 @@ function fillboard(position) {
             pull.push({x: newPosition[0], y: newPosition[1], colour: newPosition[2]});
             colourReduser = false;
         }
-        else{
-            return;
-        }
+        
     }
     return ifPointOnPosition;
 

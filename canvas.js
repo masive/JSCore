@@ -1,5 +1,7 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
+let player1 = 0;
+let player2 = 0;
 let pf = canvas.getContext("2d");
 
 canvas.addEventListener('mousemove', function (evt) {
@@ -40,7 +42,7 @@ function playField() {
     pf.lineWidth = 3;
     pf.lineCap = 'butt';
     pf.beginPath();
-//_____________________________________________________out square
+//______________________________out square_______________________
 //left side___________
     pf.arc(70, 70, 30, 0, Math.PI * 2, true);//out left-up circle
     pf.moveTo(70, 100);
@@ -274,7 +276,9 @@ function fillboard(position) {
         }
     }
     return ifPointOnPosition;
+
 }
+
 
 function getMousePos(canvas, evt) {
     let rect = canvas.getBoundingClientRect();
@@ -293,6 +297,7 @@ function grid() {
     ctx.save();
     ctx.strokeStyle = 'grey';
     ctx.lineWidth = 0.25;
+    ctx.fill();
     for (let row = 0; row < 60; row++) {
         if (row % 5 == 0) ctx.lineWidth = 0.5;
         if (row % 10 == 0) ctx.lineWidth = 1;

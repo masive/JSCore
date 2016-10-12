@@ -20,6 +20,10 @@
     let position;
     let colour = '';
     let count = 0;
+    let arr = [[70, 70], [70, 500], [70, 920], [500, 920], [930, 70], [930, 500],
+        [930, 920], [500, 70], [220, 220], [220, 500], [220, 780], [500, 780], [780, 780],
+        [780, 500], [780, 220], [500, 220], [370, 370], [370, 500], [370, 630], [500, 630],
+        [630, 630], [630, 500], [630, 370], [500, 370]];
     canvas.addEventListener('mousedown', function (evt) {
         position = getMousePos(canvas, evt);
         let message1 = 'Position' + position.x + ',' + position.y;
@@ -250,10 +254,7 @@
     }
 
     function fillboard(position) {
-        let arr = [[70, 70], [70, 500], [70, 920], [500, 920], [930, 70], [930, 500],
-            [930, 920], [500, 70], [220, 220], [220, 500], [220, 780], [500, 780], [780, 780],
-            [780, 500], [780, 220], [500, 220], [370, 370], [370, 500], [370, 630], [500, 630],
-            [630, 630], [630, 500], [630, 370], [500, 370]];
+
         let ifPointOnPosition = false;
         for (let point of arr) {
             if ((position.x >= point[0] - 30 && position.x <= point[0] + 30) &&
@@ -271,7 +272,7 @@
                 }
 
             }
-
+            console.log(count)
         }
         return ifPointOnPosition;
     }

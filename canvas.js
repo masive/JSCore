@@ -253,7 +253,7 @@ function fillboard(position) {
             }
         }
     }
-    else {
+    else if (count > 18){
         pull.push({x: newPosition[0], y: newPosition[1], colour: newPosition[2]});
         colourReduser = false;
     }

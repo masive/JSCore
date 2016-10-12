@@ -10,6 +10,8 @@ let pull = [];
 let position;
 let colour = '';
 let count = 0;
+let newPosition = [];
+let colourReduser = false;
 let arr = [[70, 70], [70, 500], [70, 920], [500, 920], [930, 70], [930, 500],
     [930, 920], [500, 70], [220, 220], [220, 500], [220, 780], [500, 780], [780, 780],
     [780, 500], [780, 220], [500, 220], [370, 370], [370, 500], [370, 630], [500, 630],
@@ -213,32 +215,34 @@ function fillboard(position) {
         }
     }
     console.log("yellow middle");
-
-    let newPosition = [];
     for (let point of arr) {
 
         if ((position.x >= point[0] - 30 && position.x <= point[0] + 30) &&
             (position.y >= point[1] - 30 && position.y <= point[1] + 30)) {
-            newPosition.push(point[0]);
-            newPosition.push(point[1]);
+            newPosition[0]=(point[0]);
+            newPosition[1]=(point[1]);
 
         }
     }
     console.log(count);
-
-    if (count > 18) {
+    if (count > 18&& colourReduser!=true) {
         for (let i of pull) {
             console.log("yellowwwwwwwwwwwww");
             if (i.x == newPosition[0] && i.y == newPosition[1]) {
-                newPosition.push(i.colour);
+                newPosition[2]=(i.colour);
                 console.log(newPosition[2]);
                 //colour1.push(i.colour);
                 delete pull.colour;
                 pull.push({x: newPosition[0], y: newPosition[1], colour: 'yellow'});
-                count = 17;
+                count++;
+                colourReduser=true;
                 break;
             }
         }
+    }
+    else {
+        pull.push({x: newPosition[0], y: newPosition[1], colour: newPosition[2]});
+        colourReduser = false;
     }
     return ifPointOnPosition;
 }

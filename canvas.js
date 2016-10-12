@@ -222,6 +222,7 @@ function fillboard(position) {
             console.log('true');
             if (count <= 18) {
                 pull.push({x: point[0], y: point[1], colour: colour});
+                point[2] == colour;
             }
         }
     }
@@ -244,7 +245,7 @@ function fillboard(position) {
                 newPosition[2]=(i.colour);
                 console.log(newPosition[2]);
                 //colour1.push(i.colour);
-                //delete pull.colour;
+                //delete i.colour;
                 i.colour = 'yellow';
                 //pull.push({x: newPosition[0], y: newPosition[1], colour: 'yellow'});
                 count++;
@@ -252,11 +253,25 @@ function fillboard(position) {
                 break;
             }
         }
-
     }
     else if (count > 18){
-        pull.push({x: newPosition[0], y: newPosition[1], colour: newPosition[2]});
-        colourReduser = false;
+        let isYellow = true;
+        for (let point of pull) {
+
+            if ((position.x >= point.x - 30 && position.x <= point.x + 30) &&
+                (position.y >= point.y - 30 && position.y <= point.y + 30) &&
+                (point.colour == 'red' || point.colour == 'blue')) {
+                console.log(point.colour);
+                isYellow = false;
+
+            }
+
+        }
+
+        if (isYellow){
+            pull.push({x: newPosition[0], y: newPosition[1], colour: newPosition[2]});
+            colourReduser = false;
+        }
     }
     return ifPointOnPosition;
 }

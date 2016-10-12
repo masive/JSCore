@@ -1,21 +1,24 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let pf = canvas.getContext("2d");
+
 canvas.addEventListener('mousemove', function (evt) {
     let mousePos = getMousePos(canvas, evt);
     let message = 'Mouse position: ' + ((mousePos.x).toFixed(0)) + ',' + ((mousePos.y).toFixed(0));
     writeMessage(canvas, message);
 }, false);
+
 let pull = [];
 let position;
 let colour = '';
 let count = 0;
 let newPosition = [];
 let colourReduser = false;
-let arr = [[70, 70], [70, 500], [70, 920], [500, 920], [930, 70], [930, 500],
-    [930, 920], [500, 70], [220, 220], [220, 500], [220, 780], [500, 780], [780, 780],
-    [780, 500], [780, 220], [500, 220], [370, 370], [370, 500], [370, 630], [500, 630],
-    [630, 630], [630, 500], [630, 370], [500, 370]];
+
+let arr = [[70, 70, 'yellow'], [70, 500, 'yellow'], [70, 920, 'yellow'], [500, 920, 'yellow'], [930, 70, 'yellow'], [930, 500, 'yellow'],
+    [930, 920, 'yellow'], [500, 70, 'yellow'], [220, 220, 'yellow'], [220, 500, 'yellow'], [220, 780, 'yellow'], [500, 780, 'yellow'], [780, 780, 'yellow'],
+    [780, 500, 'yellow'], [780, 220, 'yellow'], [500, 220, 'yellow'], [370, 370, 'yellow'], [370, 500, 'yellow'], [370, 630, 'yellow'], [500, 630, 'yellow'],
+    [630, 630, 'yellow'], [630, 500, 'yellow'], [630, 370, 'yellow'], [500, 370, 'yellow']];
 canvas.addEventListener('mousedown', function (evt) {
     position = getMousePos(canvas, evt);
     let message1 = 'Position' + ((position.x).toFixed(0)) + ',' + ((position.y).toFixed(0));
@@ -200,20 +203,29 @@ function fillboard(position) {
     //while (count <= 18) {
     for (let point of arr) {
         if ((position.x >= point[0] - 30 && position.x <= point[0] + 30) &&
-            (position.y >= point[1] - 30 && position.y <= point[1] + 30)) {
+            (position.y >= point[1] - 30 && position.y <= point[1] + 30) &&
+            (point[2] == 'yellow')) {
             ifPointOnPosition = true;
-            count++;
+
             if (count % 2 == 0) {
                 colour = 'red';
-            } else {
+                point[2] = 'red';
+                console.log(point[2])
+            } else if (count % 2 !== 0){
                 colour = 'blue';
+                point[2] = 'blue';
+                console.log(point[2])
+            } else {
+                break;
             }
+            count++;
             console.log('true');
             if (count <= 18) {
                 pull.push({x: point[0], y: point[1], colour: colour});
             }
         }
     }
+
     console.log("yellow middle");
     for (let point of arr) {
 
@@ -232,8 +244,9 @@ function fillboard(position) {
                 newPosition[2]=(i.colour);
                 console.log(newPosition[2]);
                 //colour1.push(i.colour);
-                delete pull.colour;
-                pull.push({x: newPosition[0], y: newPosition[1], colour: 'yellow'});
+                //delete pull.colour;
+                i.colour = 'yellow';
+                //pull.push({x: newPosition[0], y: newPosition[1], colour: 'yellow'});
                 count++;
                 colourReduser=true;
                 break;

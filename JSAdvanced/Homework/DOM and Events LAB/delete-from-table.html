@@ -12,17 +12,18 @@
         <tr><td>Didi</td><td>didi@didi.net</td></tr>
         <tr><td>Tedy</td><td>tedy@tedy.com</td></tr>
     </table>
-    Email: <input type="text" id="pole" name="email" />
+    Email: <input type="text" name="email" />
     <button onclick="deleteByEmail()">Delete</button>
     <div id="result" />
 
     <script>
         function deleteByEmail () {
-            let text = document.getElementById('pole').value;
+            let email = document.getElementsByName("email")[0].value;
             let rows = document.getElementsByTagName('tr');
             for (let i = 1; i < rows.length; i++){
-                if(rows[i].lastChild.textContent == text){
+                if(rows[i].lastChild.textContent == email){
                     rows[i].parentNode.removeChild(rows[i]);
+                    document.getElementById('result').textContent = 'Deleted.';
                 } else {
                     document.getElementById('result').textContent = 'Not found.';
                 }

@@ -1,0 +1,15 @@
+li {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+}
+
+ul { padding:0; }
+
+li.data-selected {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #DDD;
+
+}
